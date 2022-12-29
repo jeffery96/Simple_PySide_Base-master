@@ -210,10 +210,10 @@ class CAN_Device(ZCAN):
                 for d in msg:
                     print(d)
 
-                self.CanDisplay(can_msgs[0].frame)
+                self.MsgDisplay(can_msgs[0].frame)
         pass
 
-    def CanDisplay(self, frame):
+    def MsgDisplay(self, frame):
         # id_col = 0
         # dir_col = 1
         # len_col = 2
@@ -235,13 +235,13 @@ class CAN_Device(ZCAN):
         self.ms.TableUpdate.emit(id, dir, dlc, data)
 
     def TableUpdateFunc(self, s0, s1, s2, s3):
-        table_row_cnt = self.mw.ui.tableWidget.rowCount()
-        self.mw.ui.tableWidget.insertRow(table_row_cnt)
-        self.mw.ui.tableWidget.setItem(table_row_cnt, 0, QTableWidgetItem(s0))
-        self.mw.ui.tableWidget.setItem(table_row_cnt, 1, QTableWidgetItem(s1))
-        self.mw.ui.tableWidget.setItem(table_row_cnt, 2, QTableWidgetItem(s2))
-        self.mw.ui.tableWidget.setItem(table_row_cnt, 3, QTableWidgetItem(s3))
-
+        table_row_cnt = self.mw.ui.MsgShow_tblw.rowCount()
+        self.mw.ui.MsgShow_tblw.insertRow(table_row_cnt)
+        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 0, QTableWidgetItem(s0))
+        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 1, QTableWidgetItem(s1))
+        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 2, QTableWidgetItem(s2))
+        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 3, QTableWidgetItem(s3))
+        self.mw.ui.MsgShow_tblw.scrollToBottom()
 
 class Functions(MainWindow):
 

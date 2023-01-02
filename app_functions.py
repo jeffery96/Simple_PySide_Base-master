@@ -225,22 +225,24 @@ class CAN_Device(ZCAN):
         for i in frame.data:
             data = data + str(i) + ' '
 
-        # self.mw.ui.tableWidget.setItem(1, 0, QTableWidgetItem(hex(frame.can_id)))
-        # self.mw.ui.tableWidget.setItem(1, 1, QTableWidgetItem('rx'))
-        # self.mw.ui.tableWidget.setItem(1, 2, QTableWidgetItem(str(frame.can_dlc)))
-        # data = ""
-        # for i in frame.data:
-        #     data = data + str(i) + ' '
-        # self.mw.ui.tableWidget.setItem(1, 3, QTableWidgetItem(data))
         self.ms.TableUpdate.emit(id, dir, dlc, data)
 
     def TableUpdateFunc(self, s0, s1, s2, s3):
         table_row_cnt = self.mw.ui.MsgShow_tblw.rowCount()
         self.mw.ui.MsgShow_tblw.insertRow(table_row_cnt)
-        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 0, QTableWidgetItem(s0))
-        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 1, QTableWidgetItem(s1))
-        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 2, QTableWidgetItem(s2))
-        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 3, QTableWidgetItem(s3))
+        item = QTableWidgetItem(str(table_row_cnt+1))
+        item.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 0, item)
+        item = QTableWidgetItem(s0)
+        item.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 1, item)
+        item = QTableWidgetItem(s1)
+        item.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 2, item)
+        item = QTableWidgetItem(s2)
+        item.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 3, item)
+        self.mw.ui.MsgShow_tblw.setItem(table_row_cnt, 4, QTableWidgetItem(s3))
         self.mw.ui.MsgShow_tblw.scrollToBottom()
 
 class Functions(MainWindow):

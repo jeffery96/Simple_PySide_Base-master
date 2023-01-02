@@ -68,6 +68,7 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setMinimumWidth(20)
         UIFunctions.addNewMenu(self, "主页", "btn_home", "url(:/16x16/icons/16x16/cil-home.png)", True)
         UIFunctions.addNewMenu(self, "设备", "btn_device", "url(:/16x16/icons/16x16/cil-input.png)", True)
+        UIFunctions.addNewMenu(self, "仪表盘", "btn_panel", "url(:/16x16/icons/16x16/cil-speedometer.png)", True)
         UIFunctions.addNewMenu(self, "Add User", "btn_new_user", "url(:/16x16/icons/16x16/cil-user-follow.png)", True)
         UIFunctions.addNewMenu(self, "Custom Widgets", "btn_widgets", "url(:/16x16/icons/16x16/cil-equalizer.png)", False)
         ## ==> END ##
@@ -126,7 +127,15 @@ class MainWindow(QMainWindow):
         ## ==> QTableWidget RARAMETERS
         ########################################################################
         self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+        self.ui.MsgShow_tblw.horizontalHeader().resizeSection(0, 60)
+        self.ui.MsgShow_tblw.horizontalHeader().resizeSection(1, 120)
+        self.ui.MsgShow_tblw.horizontalHeader().resizeSection(2, 60)
+        self.ui.MsgShow_tblw.horizontalHeader().resizeSection(3, 60)
+
+        self.ui.MsgShow_tblw.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.ui.MsgShow_tblw.customContextMenuRequested.connect(self.TableWidgetContext)
         ## ==> END ##
+        self.ui.test_sld.valueChanged.connect(lambda :self.ui.widget.setValue(self.ui.test_sld.value()))
 
 
 
@@ -141,6 +150,20 @@ class MainWindow(QMainWindow):
         ########################################################################
         self.show()
         ## ==> END ##
+
+    def TableWidgetContext(self):
+        menu = QMenu()
+        clearAllAct = menu.addAction("清空全部")
+
+        def tblwClearAllRow():
+            row_num = self.ui.MsgShow_tblw.rowCount()
+            for i in range(0, row_num)[::-1]:
+                self.ui.MsgShow_tblw.removeRow(i)
+
+        clearAllAct.triggered.connect(tblwClearAllRow)
+        menu.exec_(QCursor.pos())
+        pass
+
 
     ########################################################################
     ## MENUS ==> DYNAMIC MENUS FUNCTIONS
@@ -168,6 +191,13 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
             UIFunctions.resetStyle(self, "btn_new_user")
             UIFunctions.labelPage(self, "New User")
+            btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
+
+        # PAGE Panel
+        if btnWidget.objectName() == "btn_panel":
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_panel)
+            UIFunctions.resetStyle(self, "btn_panel")
+            UIFunctions.labelPage(self, "仪表盘")
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
 
         # PAGE WIDGETS

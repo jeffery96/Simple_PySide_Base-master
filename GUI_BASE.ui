@@ -563,7 +563,7 @@ QToolTip {
     <string notr="true">background: transparent;
 color: rgb(210, 210, 210);</string>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_13">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -1842,7 +1842,7 @@ QFrame QPushButton:pressed {
                    <widget class="QPushButton" name="CanTransClick_Btn">
                     <property name="geometry">
                      <rect>
-                      <x>70</x>
+                      <x>80</x>
                       <y>240</y>
                       <width>93</width>
                       <height>28</height>
@@ -1878,6 +1878,9 @@ QFrame QPushButton:pressed {
                       <width>621</width>
                       <height>571</height>
                      </rect>
+                    </property>
+                    <property name="contextMenuPolicy">
+                     <enum>Qt::CustomContextMenu</enum>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">QTableWidget {	
@@ -1941,6 +1944,9 @@ QHeaderView::section:vertical
                     <property name="autoScroll">
                      <bool>true</bool>
                     </property>
+                    <property name="editTriggers">
+                     <set>QAbstractItemView::NoEditTriggers</set>
+                    </property>
                     <property name="alternatingRowColors">
                      <bool>false</bool>
                     </property>
@@ -1950,8 +1956,11 @@ QHeaderView::section:vertical
                     <attribute name="horizontalHeaderCascadingSectionResizes">
                      <bool>false</bool>
                     </attribute>
+                    <attribute name="horizontalHeaderMinimumSectionSize">
+                     <number>60</number>
+                    </attribute>
                     <attribute name="horizontalHeaderDefaultSectionSize">
-                     <number>135</number>
+                     <number>100</number>
                     </attribute>
                     <attribute name="horizontalHeaderStretchLastSection">
                      <bool>true</bool>
@@ -1962,6 +1971,11 @@ QHeaderView::section:vertical
                     <attribute name="verticalHeaderStretchLastSection">
                      <bool>false</bool>
                     </attribute>
+                    <column>
+                     <property name="text">
+                      <string>序号</string>
+                     </property>
+                    </column>
                     <column>
                      <property name="text">
                       <string>ID</string>
@@ -1982,6 +1996,102 @@ QHeaderView::section:vertical
                       <string>数据</string>
                      </property>
                     </column>
+                   </widget>
+                  </widget>
+                  <widget class="QWidget" name="page_panel">
+                   <property name="styleSheet">
+                    <string notr="true">QFrame {
+	background-color: rgb(39, 44, 54);
+	border-radius: 6px;
+	/*font-family:&quot;Segoe UI&quot;;*/
+}
+QFrame QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QFrame QComboBox:disabled{
+	background-color: rgb(57, 65, 80);
+}
+QFrame QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}
+QFrame QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+}
+QFrame QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QFrame QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}
+</string>
+                   </property>
+                   <widget class="QFrame" name="frame_5">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>271</width>
+                      <height>301</height>
+                     </rect>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <widget class="GaugePanel" name="widget" native="true">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>10</y>
+                       <width>250</width>
+                       <height>250</height>
+                      </rect>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>250</width>
+                       <height>250</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>250</width>
+                       <height>250</height>
+                      </size>
+                     </property>
+                    </widget>
+                    <widget class="QSlider" name="test_sld">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>270</y>
+                       <width>251</width>
+                       <height>22</height>
+                      </rect>
+                     </property>
+                     <property name="maximum">
+                      <number>2000</number>
+                     </property>
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                    </widget>
                    </widget>
                   </widget>
                   <widget class="QWidget" name="page_widgets">
@@ -2309,7 +2419,7 @@ QScrollBar:horizontal {
                              <rect>
                               <x>0</x>
                               <y>0</y>
-                              <width>222</width>
+                              <width>278</width>
                               <height>222</height>
                              </rect>
                             </property>
@@ -3010,6 +3120,14 @@ QHeaderView::section:vertical
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>GaugePanel</class>
+   <extends>QWidget</extends>
+   <header location="global">CustomWidgets/CustomGaugePanel</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>btn_minimize</tabstop>
   <tabstop>btn_maximize_restore</tabstop>

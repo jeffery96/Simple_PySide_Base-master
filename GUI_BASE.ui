@@ -1558,7 +1558,12 @@ QPushButton:pressed {
                 <item>
                  <widget class="QStackedWidget" name="stackedWidget">
                   <property name="styleSheet">
-                   <string notr="true">background: transparent;</string>
+                   <string notr="true">/*QWidget{*/
+/*    background-color: white;*/
+/*}*/
+background: transparent;
+
+</string>
                   </property>
                   <property name="currentIndex">
                    <number>1</number>
@@ -1978,6 +1983,11 @@ QHeaderView::section:vertical
                     </column>
                     <column>
                      <property name="text">
+                      <string>时间</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
                       <string>ID</string>
                      </property>
                     </column>
@@ -1996,6 +2006,32 @@ QHeaderView::section:vertical
                       <string>数据</string>
                      </property>
                     </column>
+                   </widget>
+                   <widget class="QPlainTextEdit" name="plainTextEdit_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>280</y>
+                      <width>231</width>
+                      <height>301</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPlainTextEdit {
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	padding: 10px;
+}
+QPlainTextEdit:hover {
+	border: 2px solid rgb(64, 71, 88);
+}
+QPlainTextEdit:focus {
+	border: 2px solid rgb(91, 101, 124);
+}</string>
+                    </property>
+                    <property name="readOnly">
+                     <bool>true</bool>
+                    </property>
                    </widget>
                   </widget>
                   <widget class="QWidget" name="page_panel">
@@ -2054,29 +2090,7 @@ QFrame QPushButton:pressed {
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
                     </property>
-                    <widget class="GaugePanel" name="widget" native="true">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
-                       <y>10</y>
-                       <width>250</width>
-                       <height>250</height>
-                      </rect>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>250</width>
-                       <height>250</height>
-                      </size>
-                     </property>
-                     <property name="maximumSize">
-                      <size>
-                       <width>250</width>
-                       <height>250</height>
-                      </size>
-                     </property>
-                    </widget>
-                    <widget class="QSlider" name="test_sld">
+                    <widget class="QSlider" name="horizontalSlider_2">
                      <property name="geometry">
                       <rect>
                        <x>10</x>
@@ -2085,11 +2099,18 @@ QFrame QPushButton:pressed {
                        <height>22</height>
                       </rect>
                      </property>
-                     <property name="maximum">
-                      <number>2000</number>
-                     </property>
                      <property name="orientation">
                       <enum>Qt::Horizontal</enum>
+                     </property>
+                    </widget>
+                    <widget class="GaugePanel" name="widget" native="true">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>9</y>
+                       <width>251</width>
+                       <height>251</height>
+                      </rect>
                      </property>
                     </widget>
                    </widget>
